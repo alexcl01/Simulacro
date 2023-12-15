@@ -1,7 +1,7 @@
 export const typeDefs = `#graphql
 type Query {
-    character(id: ID!): Character
-    charactersByIds(ids: [ID!]!): [Character]
+    character(id: ID!): Character!
+    charactersByIds(ids: [ID!]!): [Character!]!
 }
 
 type Character {

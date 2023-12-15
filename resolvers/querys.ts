@@ -1,3 +1,4 @@
+import { GraphQLError } from "graphql";
 import { CharacterAPIRest } from "../types.ts";
 
 export const Query = {
@@ -9,7 +10,13 @@ export const Query = {
     const character = await fetch(
       `https://rickandmortyapi.com/api/character/${id}`
     );
-    return character.json();
+
+    if(character.status !== 200){
+      throw new GraphQLError("Error");
+    }
+    const response = await character.json();
+    return response;
+
   },
   charactersByIds: async (
     _: unknown,
